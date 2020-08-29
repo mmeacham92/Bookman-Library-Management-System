@@ -1,0 +1,40 @@
+﻿@model Book
+@{
+    ViewBag.Title = @Model.Title;
+    var photoPath = "~/images/" + @Model.ImageString;
+}
+
+
+<h1 class="text-center"><em>@Model.Title</em></h1>
+<div class="img-container d-block mx-auto">
+    <img src="@photoPath" alt="@Model.Title" asp-append-version="true"
+         class="rounded img-thumbnail details-image center" />
+</div>
+<ul class="list-group mt-5 col-md-4 center">
+    <div class="text-center">
+        <li class="list-group-item text-center">
+            @Model.Title
+        </li>
+        <li class="list-group-item">
+            Author: @Model.AuthorFullName
+        </li>
+        <li class="list-group-item">
+            Binding: @Model.Binding.Type
+        </li>
+        <li class="list-group-item">
+            Genre: @Model.Genre.Name
+        </li>
+        <li class="list-group-item">
+            Pages: @Model.PageCount
+        </li>
+        <li class="list-group-item">
+            Condition: @Model.Condition.Status
+        </li>
+    </div>
+    
+</ul>
+<div class="buttonHolder">
+    <a asp-action="List" class="btn btn-primary mt-3">Return to Catalog</a>
+</div>
+
+

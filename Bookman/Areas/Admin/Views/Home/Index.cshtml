@@ -1,0 +1,18 @@
+﻿@{
+    ViewBag.Title = "Admin";
+}
+
+<h1 class="mb-4 text-center">Welcome, Administrator!</h1>
+
+<div class="row">
+    <div class="col-sm-4 center">
+        <div class="list-group">
+            <a asp-area="Admin" asp-controller="Book" asp-action="List"
+               class="list-group-item">Manage Books</a>
+            <a asp-area="Admin" asp-controller="Genre" asp-action="List"
+               class="list-group-item">Manage Genres</a>
+            <a asp-area="Admin" asp-controller="Administration" asp-action="ListRoles"
+               class="list-group-item">Manage User Roles</a>
+        </div>
+    </div>
+</div>

@@ -1,0 +1,41 @@
+﻿@model Book
+@{
+    ViewBag.Title = @Model.Title;
+    var photoPath = "~/images/" + Model.ImageString;
+}
+
+<h1 class="text-center"><em>@Model.Title</em></h1>
+<div class="img-container d-block mx-auto">
+    <img src="@photoPath" asp-append-version="true" alt="@Model.Title"
+         class="rounded img-thumbnail details-image center" />
+</div>
+<ul class="list-group mt-5">
+    <li class="list-group-item">
+        @Model.Title
+    </li>
+    <li class="list-group-item">
+        Author: @Model.AuthorFullName
+    </li>
+    <li class="list-group-item">
+        Binding: @Model.Binding.Type
+    </li>
+    <li class="list-group-item">
+        Genre: @Model.Genre.Name
+    </li>
+    <li class="list-group-item">
+        Pages: @Model.PageCount
+    </li>
+    <li class="list-group-item">
+        Condition: @Model.Condition.Status
+    </li>
+</ul>
+<div class="mt-4">
+    <a asp-area="Admin" asp-controller="Book" asp-action="Update"
+       asp-route-id="@Model.BookID" class="btn btn-primary mr-5">
+        Edit Details
+    </a>
+    <a asp-area="Admin" asp-controller="Book" asp-action="Delete"
+       asp-route-id="@Model.BookID" class="btn btn-danger">
+        Delete Book
+    </a>
+</div>

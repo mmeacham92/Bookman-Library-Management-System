@@ -1,0 +1,21 @@
+﻿@model Book
+@{
+    ViewBag.Title = "Home";
+}
+
+<h1 class="text-center mb-3"><em>Welcome</em></h1>
+<img id="storeImage" class="d-block center w-100" src="~/images/imageSlider/1.png"
+     alt="Store Image" />
+<h3 class="mt-5 text-center">
+    Staff Favorite: <br />
+    <a asp-controller="Book" asp-action="Details"
+       asp-route-id="@Model.BookID"
+       id="favorite">
+        <em>@Model.Title</em>
+    </a>
+    <a asp-controller="Book" asp-action="Details"
+       asp-route-id="@Model.BookID">
+        <img src="~/images/@Model.ImageString" alt="@Model.Title"
+             class="d-block mx-auto mt-1 img-thumbnail list-image" />
+    </a>
+</h3>

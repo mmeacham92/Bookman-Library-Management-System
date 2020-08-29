@@ -1,0 +1,87 @@
+﻿@{
+    string controller =
+        ViewContext.RouteData.Values["controller"].ToString();
+    string action =
+        ViewContext.RouteData.Values["action"].ToString();
+}
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>@ViewBag.Title - The Bookman</title>
+    <link rel="stylesheet" href="~/lib/bootstrap/dist/css/bootstrap.min.css" />
+    <link rel="stylesheet" type="text/css" href="~/css/site.css" />
+</head>
+<body>
+    <div id="container">
+        <div class="container">
+            <header>
+                <a asp-controller="Home" asp-action="Index">
+                    <img src="~/images/brandLogo.png" id="logo" class="d-block mx-auto" />
+                </a>
+                <nav class="navbar navbar-expand-md navbar-light bg-white">
+                    <button class="navbar-toggler" type="button"
+                            data-toggle="collapse" data-target="#navbarSupportedContent"
+                            aria-controls="navbarSupportedContent" aria-expanded="false"
+                            aria-label="Toggle navigation">
+                        <span class="navbar-toggler-icon"></span>
+                    </button>
+                    <nav class="collapse navbar-collapse" id="navbarSupportedContent">
+                        <div class="navbar-nav mr-auto">
+                            <a class="nav-link
+                           @(controller == "Home" && action == "Index" ? "active" : "")"
+                               asp-controller="Home" asp-action="Index">Admin</a>
+                            <a class="nav-link
+                           @(controller == "Book" ? "active" : "")"
+                               asp-controller="Book" asp-action="List">Catalog</a>
+                            <a class="nav-link
+                           @(controller == "Genre" ? "active" : "")"
+                               asp-controller="Genre" asp-action="List">Genres</a>
+                            <a class="nav-link
+                           @(controller == "Administration" ? "active" : "")"
+                               asp-controller="Administration" asp-action="ListRoles">Roles</a>
+                        </div>
+                        <ul class="navbar-nav ml-auto">
+                            <li class="nav-item">
+                                <a class="nav-link" asp-area="" asp-controller="Home"
+                                   asp-action="Index">
+                                    View Site
+                                </a>
+                            </li>
+                            <li class="nav-item">
+                                <form method="post" asp-area="" asp-action="Logout" asp-controller="Account">
+                                    <button type="submit" class="nav-link btn btn-link nav-link">
+                                        Logout
+                                    </button>
+                                </form>
+                            </li>
+                        </ul>
+                    </nav>
+                </nav>
+            </header>
+        </div>
+        <div id="main">
+                @RenderBody()
+        </div>
+    </div>
+    
+    @if (IsSectionDefined("Scripts"))
+    {
+        @RenderSection("Scripts", required: true)
+    }
+    <footer id="footer">
+        <hr />
+        <p>&copy; @DateTime.Now.Year - The Bookman | 631 W Colorado Ave, Colorado Springs, CO 80905 | (719) 636-0055</p>
+    </footer>
+
+
+    <script src="~/lib/jquery/dist/jquery.min.js"></script>
+    <script src="~/lib/bootstrap/dist/js/bootstrap.bundle.min.js"></script>
+    <script src="~/lib/jquery-validation/dist/jquery.validate.min.js"></script>
+    <script src="~/lib/jquery-validation-unobtrusive/jquery.validate.unobtrusive.min.js"></script>
+    <script src="~/lib/jquery-validation/dist/additional-methods.min.js"></script>
+    <script src="~/js/site.js"></script>
+</body>
+</html>

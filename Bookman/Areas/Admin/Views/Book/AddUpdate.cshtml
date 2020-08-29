@@ -1,0 +1,90 @@
+﻿@model Book
+@{
+    string title = ViewBag.Action + " Book";
+    ViewBag.Title = title;
+}
+
+<h1>@ViewBag.Title</h1>
+
+<form enctype="multipart/form-data" asp-controller="Book" asp-action="Update" method="post">
+    <div asp-validation-summary="All" class="text-danger"></div>
+
+    <div class="form-group">
+        <label asp-for="Title">Title</label>
+        <input asp-for="Title" class="form-control" />
+    </div>
+
+    <div class="form-group">
+        <label asp-for="AuthorFirstName">Author's First Name</label>
+        <input asp-for="AuthorFirstName" class="form-control" />
+    </div>
+
+    <div class="form-group">
+        <label asp-for="AuthorLastName">Author's Last Name</label>
+        <input asp-for="AuthorLastName" class="form-control" />
+    </div>
+
+    <div class="form-group">
+        <label asp-for="GenreID">Genre</label>
+        <select asp-for="GenreID"
+                asp-items="@(new SelectList(ViewBag.Genres, "GenreID", "Name",
+                                Model.GenreID.ToString()))" class="form-control">
+        </select>
+    </div>
+
+    <div class="form-group">
+        <label asp-for="BindingID">Binding</label>
+        <select asp-for="BindingID"
+                asp-items="@(new SelectList(ViewBag.Bindings, "BindingID", "Type",
+                                Model.BindingID.ToString()))"
+                class="form-control">
+        </select>
+    </div>
+
+    <div class="form-group">
+        <label asp-for="ConditionID">Condition</label>
+        <select asp-for="ConditionID"
+                asp-items="@(new SelectList(ViewBag.Conditions, "ConditionID", "Status",
+                                Model.ConditionID.ToString()))"
+                class="form-control">
+        </select>
+    </div>
+
+    <div class="form-group">
+        <label asp-for="PageCount">Page Count</label>
+        <input asp-for="PageCount" class="form-control" />
+    </div>
+
+    @if (ViewBag.Action == "Add")
+    {
+        <div class="form-group">
+            <label asp-for="CoverImage">Cover Image</label>
+            <div class="custom-file">
+                <input asp-for="CoverImage" class="form-control custom-file-input" />
+                <label class="custom-file-label">Choose File...</label>
+            </div>
+        </div>
+    }
+
+
+    <input type="hidden" asp-for="BookID" />
+
+    <button type="submit" class="btn
+            @(ViewBag.Action == "Add" ? "btn-success" : "btn-primary")">
+        @ViewBag.Action Book
+    </button>
+
+    @section Scripts {
+        <script>
+            $(document).ready(function () {
+                $('.custom-file-input').on("change", function () {
+                    var fileName = $(this).val().split("\\").pop();
+                    $(this).next('.custom-file-label').html(fileName);
+                });
+            })
+        </script>
+    }
+
+
+
+</form>
